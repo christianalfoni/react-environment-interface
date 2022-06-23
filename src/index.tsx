@@ -34,10 +34,9 @@ export const createEmitter = <T extends IEvent>(): TEmitter<T> => {
 
 export interface IEnvironment {}
 
-export const defineEnvironment = <T extends IEnvironment>() => {
+export const createEnvironment = <T extends IEnvironment>() => {
   const environmentContext = React.createContext(null as unknown as T);
   const useEnvironment = () => React.useContext(environmentContext);
-  const createEnvironment = (constr: () => T) => constr();
   const EnvironmentProvider: React.FC<{
     environment: T;
     children: React.ReactNode;
@@ -50,7 +49,6 @@ export const defineEnvironment = <T extends IEnvironment>() => {
   };
 
   return {
-    createEnvironment,
     useEnvironment,
     EnvironmentProvider,
     EnvironmentConsumer: environmentContext.Consumer,
