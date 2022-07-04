@@ -8,7 +8,7 @@ export type TEmit<T extends IEvent> = (event: T) => void;
 
 export type TSubscribe<T extends IEvent> = (
   listener: (event: T) => void
-) => void;
+) => () => void;
 
 export type TEmitter<T extends IEvent> = {
   emit: TEmit<T>;
